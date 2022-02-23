@@ -25,13 +25,6 @@ const DragList = (props) => {
       setOnHoldItems(["Being unpleasant"]);
     }
   };
-  // (key, value) => {
-  //   setBacklogItems(prev => {
-  //     return {
-  //       ...prev, [key]: value
-  //     }
-  //   })
-  // }
 
   useEffect(() => {
     getLocalColumns();
@@ -57,20 +50,23 @@ const DragList = (props) => {
     onHoldItems: setOnHoldItems,
   };
 
+  const updateLocalColumns = (key, value) => {
+    for (const el of columns) {
+      if (el.key == key) {
+        localStorage.setItem(key, JSON.stringify(value));
+      } else {
+        localStorage.setItem(
+          el.key,
+          JSON.stringify(getArrayFromColumnKey(el.key))
+        );
+      }
+    }
+  };
+
   const addElementToColumn = (key) => {
     return (value) => () => {
       return setters[key]((prev) => {
-        for (const el of columns) {
-          if (el.key == key) {
-            localStorage.setItem(key, JSON.stringify([...prev, value]));
-          } else {
-            localStorage.setItem(
-              el.key,
-              JSON.stringify(getArrayFromColumnKey(el.key))
-            );
-          }
-        }
-
+        updateLocalColumns(key, [...prev, value]);
         return [...prev, value];
       });
     };
@@ -105,10 +101,10 @@ const DragList = (props) => {
         return (
           <DragColumn
             header={el.header}
-            className={el.class}
-            key={el.class}
+            className={el.key + " " + el.class}
             content={getArrayFromColumnKey(el.key)}
             onAdd={addElementToColumn(el.key)}
+            key={el.key}
           />
         );
       })}
