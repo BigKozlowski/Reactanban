@@ -1,0 +1,26 @@
+{
+  "name": "reactanban",
+  "version": "0.0.1",
+  "description": "React drag`n`drop kanban",
+  "main": "index.js",
+  "scripts": {
+    "develop": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^4.7.4",
+    "css-loader": "^6.6.0",
+    "postcss-loader": "^6.2.1",
+    "style-loader": "^3.3.1"
+  }
+}
