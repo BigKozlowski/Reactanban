@@ -109,7 +109,6 @@ const DragList = (props) => {
 
   const dropOnEmptyHandler = (e, column) => {
     e.preventDefault();
-    console.log("empty drop");
     if (column.length == 0) {
       const currentIndex = currentColumn.indexOf(currentItem);
       currentColumn.splice(currentIndex, 1);
