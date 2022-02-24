@@ -3,7 +3,7 @@ import React from "react";
 const ButtonGroup = (props) => {
   return (
     <div className="add-btn-group">
-      <div className="add-btn" onClick={props.onAdd("text")}>
+      <div className="add-btn" onClick={() => props.onAdd(props.id, "test")}>
         <span className="plus-sign">+</span>
         <span>Add item</span>
       </div>

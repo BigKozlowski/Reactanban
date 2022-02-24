@@ -30,18 +30,19 @@ h1 {
 
 .main-header {
   background-color: rgba(0, 0, 0, 0.4);
-  position: fixed;
+  position: absolute;
   width: 100vw;
   top: 0;
+  height: 3rem;
 }
 
 .main-header h1 {
-  margin: 0.5rem;
+  margin: auto;
+  font-size: 2rem;
 }
 
 .main-title {
   text-align: center;
-  font-size: 3rem;
 }
 
 ul {
