@@ -22,7 +22,9 @@ const DragColumn = (props) => {
                 <DragItem
                   text={el.title}
                   key={el.id}
+                  columnId={props.id}
                   draggable={true}
+                  onChange={props.onChange}
                   onDragOver={props.onDragOver}
                   onDragLeave={props.onDragLeave}
                   onDragStart={props.onDragStart}

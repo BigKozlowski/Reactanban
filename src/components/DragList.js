@@ -149,6 +149,46 @@ const DragList = (props) => {
     });
   };
 
+  const removeItemHandler = (key, item) => {
+    setColumns((prev) => {
+      const currentIndex = prev[key].items.indexOf(item);
+      const changedItems = [...prev[key].items];
+      changedItems.splice(currentIndex, 1);
+      const changedColumn = { ...prev[key], items: changedItems };
+
+      updateLocalColumns({ ...prev, [key]: changedColumn });
+
+      return { ...prev, [key]: changedColumn };
+    });
+  };
+
+  const changeItemHandler = (columnId, item, newText) => {
+    if (!newText.title) {
+      removeItemHandler(columnId, item);
+    } else {
+      setColumns((prev) => {
+        const currentIndex = prev[columnId].items.indexOf(item);
+        const newItems = prev[columnId].items;
+        newItems.splice(currentIndex, 1, newText);
+
+        updateLocalColumns({
+          ...prev,
+          [columnId]: {
+            ...prev[columnId],
+            items: newItems,
+          },
+        });
+        return {
+          ...prev,
+          [columnId]: {
+            ...prev[columnId],
+            items: newItems,
+          },
+        };
+      });
+    }
+  };
+
   return (
     <ul className="drag-list">
       {Object.keys(columns).map((key) => {
@@ -160,6 +200,7 @@ const DragList = (props) => {
             key={columns[key].id}
             id={key}
             onAdd={addHandler}
+            onChange={changeItemHandler}
             onDragOver={dragOverHandler}
             onDragLeave={dragLeaveHandler}
             onDragStart={dragStartHandler}

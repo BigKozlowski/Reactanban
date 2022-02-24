@@ -158,6 +158,30 @@ ul {
   color: black;
 }
 
+.drag-item-input {
+  margin: 10px;
+  padding: 10px;
+  height: fit-content;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  line-height: 1.5rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.drag-item-input input {
+  display: block;
+  margin: 0;
+  padding: 0px;
+  height: fit-content;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  line-height: 1.5rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  width: 100%;
+}
+
 /* Add Button Group */
 .add-btn-group {
   display: flex;
@@ -186,7 +210,9 @@ ul {
 }
 
 .solid {
-  display: none;
+  display: flex;
+  margin-right: 10px;
+  margin-left: auto;
 }
 
 .solid:hover {
@@ -208,7 +234,7 @@ ul {
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.9);
   min-height: 100px;
-  display: none;
+  display: flex;
 }
 
 .add-item {
