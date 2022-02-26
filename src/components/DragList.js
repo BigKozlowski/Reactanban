@@ -66,7 +66,7 @@ const DragList = (props) => {
     e.target.style.boxShadow = "none";
   };
 
-  const dragStartHandler = (e, column, item) => {
+  const dragStartHandler = (column, item) => {
     setCurrentColumn(column);
     setCurrentItem(item);
   };
