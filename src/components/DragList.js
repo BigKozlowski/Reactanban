@@ -149,43 +149,37 @@ const DragList = (props) => {
     });
   };
 
-  const removeItemHandler = (key, item) => {
+  const removeItem = (columnKey, item) => {
     setColumns((prev) => {
-      const currentIndex = prev[key].items.indexOf(item);
-      const changedItems = [...prev[key].items];
+      const currentIndex = prev[columnKey].items.indexOf(item);
+      const changedItems = [...prev[columnKey].items];
+
       changedItems.splice(currentIndex, 1);
-      const changedColumn = { ...prev[key], items: changedItems };
+      const changedColumn = { ...prev[columnKey], items: changedItems };
 
-      updateLocalColumns({ ...prev, [key]: changedColumn });
-
-      return { ...prev, [key]: changedColumn };
+      updateLocalColumns({ ...prev, [columnKey]: changedColumn });
+      return { ...prev, [columnKey]: changedColumn };
     });
   };
 
-  const changeItemHandler = (columnId, item, newText) => {
-    if (!newText.title) {
-      removeItemHandler(columnId, item);
-    } else {
-      setColumns((prev) => {
-        const currentIndex = prev[columnId].items.indexOf(item);
-        const newItems = prev[columnId].items;
-        newItems.splice(currentIndex, 1, newText);
+  const updateItemText = (columnKey, item, newText) => {
+    setColumns((prev) => {
+      const currentIndex = prev[columnKey].items.indexOf(item);
+      const changedItems = prev[columnKey].items;
 
-        updateLocalColumns({
-          ...prev,
-          [columnId]: {
-            ...prev[columnId],
-            items: newItems,
-          },
-        });
-        return {
-          ...prev,
-          [columnId]: {
-            ...prev[columnId],
-            items: newItems,
-          },
-        };
-      });
+      changedItems.splice(currentIndex, 1, newText);
+      const changedColumn = { ...prev[columnKey], items: changedItems };
+
+      updateLocalColumns({ ...prev, [columnKey]: changedColumn });
+      return { ...prev, [columnKey]: changedColumn };
+    });
+  };
+
+  const changeItemHandler = (columnKey, item, newText) => {
+    if (!newText.title) {
+      removeItem(columnKey, item);
+    } else {
+      updateItemText(columnKey, item, newText);
     }
   };
 
