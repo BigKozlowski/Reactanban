@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from "react";
-import Card from "./UI/Card";
 
 const DragItem = (props) => {
   const [changedItem, setChangedItem] = useState(props.item);

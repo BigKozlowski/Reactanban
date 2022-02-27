@@ -3,9 +3,9 @@ import DragList from "./DragList";
 
 const DragContainer = (props) => {
   return (
-    <ul className="drag-container">
+    <div className="drag-container">
       <DragList></DragList>
-    </ul>
+    </div>
   );
 };
 

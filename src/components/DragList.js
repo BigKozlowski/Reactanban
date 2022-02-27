@@ -55,28 +55,18 @@ const DragList = (props) => {
     localStorage.setItem("columns", JSON.stringify(value));
   };
 
-  const dragOverHandler = (e) => {
-    e.preventDefault();
-    if (e.target.className == "drag-item") {
-      e.target.style.boxShadow = "0 4px 3px wheat";
-    }
-  };
+  //Unificate bellow functions interfaces
+  //=======================================
+  //=======================================
 
-  const dragLeaveHandler = (e) => {
-    e.target.style.boxShadow = "none";
-  };
-
-  const dragStartHandler = (column, item) => {
+  const dragStartHandler = (e, column, item) => {
     setCurrentColumn(column);
     setCurrentItem(item);
   };
 
-  const dragEndHandler = (e) => {
-    e.target.style.boxShadow = "none";
-  };
-
   const dropHandler = (e, column, item) => {
     e.preventDefault();
+    //Need to style component inside component.
     e.target.style.boxShadow = "none";
     const currentIndex = currentColumn.indexOf(currentItem);
     currentColumn.splice(currentIndex, 1);
@@ -142,6 +132,7 @@ const DragList = (props) => {
   const addHandler = (key, text) => {
     setColumns((prev) => {
       const newItems = [...prev[key].items];
+      //Generate real ID
       newItems.push({ id: Math.random(), title: text });
       const newColumn = { ...prev[key], items: newItems };
       updateLocalColumns({ ...prev, [key]: newColumn });
@@ -181,6 +172,24 @@ const DragList = (props) => {
     } else {
       updateItemText(columnKey, item, newText);
     }
+  };
+
+  const dragEndHandler = (e) => {
+    //Need to style component inside component.
+    e.target.style.boxShadow = "none";
+  };
+
+  const dragOverHandler = (e) => {
+    e.preventDefault();
+    if (e.target.className == "drag-item") {
+      //Need to style component inside component.
+      e.target.style.boxShadow = "0 4px 3px wheat";
+    }
+  };
+
+  const dragLeaveHandler = (e) => {
+    //Need to style component inside component.
+    e.target.style.boxShadow = "none";
   };
 
   return (
